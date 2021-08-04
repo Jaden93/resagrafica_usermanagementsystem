@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="toggle" class="toggle py-5 alert alert-success text-center">Utente Eliminato</div>
+    <div class="container centerTable">
+        <div class="d-flex justify-content-between">
+            <i class="fas fa-search"></i>
+            <button type="button" class="btn customBtn" data-bs-toggle="modal" data-bs-target="#exampleModal"><span
+                class="customCross">+</span>Aggiungi</button>           
+        </div>
+
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header customModalhead">
+                <form method="POST" action="">
+                    <button class="mx-2 btn btn-danger " type="submit" id="dltBtn" name="delete"
+                        aria-label="Close"><i class="mx-1 fas fa-trash-alt"></i>Delete</button>
+                </form>
+                <form method="POST" action="">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="mx-1 far fa-save"></i>Salva e chiudi</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                            aria-label="Close">Chiudi</button>
+                    </div>
+            <div class="modal-body">
+                <div class="form-group d-flex">
+                    <input name="update_id" type="hidden" class="customInput form-control" id="modal_id">
+                    <div class="col-6 me-2">
+                        <label for="modal_nome">Nome e Cognome</label>
+                        <input name="update_nome" type="text" class="customInput form-control" id="modal_nome">
+                    </div>
+                    <div class="col-4 mx-2">
+                        <label for="data">Data di nascita</label>
+                        <input name="update_data" type="date" class="customInput form-control" id="modal_data"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="col mx-2">
+                        <label for="tipo">Tipo</label>
+                        <select name="update_tipo" id="modal_tipo">
+                            <option>
+                                nessuno
+                            </option>
+                            <option>
+                                individuale
+                            </option>
+                            <option>
+                                collettivo
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="py-3 col-6 me-2">
+                        <label for="address">Indirizzo</label>
+                        <input name="update_indirizzo" type="address" class="form-control customInput"
+                            id="modal_indirizzo" aria-describedby="emailHelp">
+                    </div>
+                    <div class="py-3 col-6 me-2">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input name="update_email" type="email" class="customInput form-control" id="modal_email"
+                            aria-describedby="emailHelp">
+                    </div>
+                </div>
+                <div class="py-3 my-2">
+                    <label class="" for="">Attivo</label>
+                    <input name="update_attivo" type="hidden" value="NO" class=" form-check-input" id="check">
+                    <input name="update_attivo" checked type="checkbox" value="SI" class="off form-check-input"
+                        id="check">
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">INSERISCI UTENTE</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="">
+                    <div class="form-group">
+                        <label for="nome">Inserisci nome e cognome</label>
+                        <input required name="nome" type="text" class="form-control" id="nome" placeholder="Nome">
+                        <label for="exampleInputEmail1">Inserisci l'email</label>
+                        <input required name="email" type="email" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Email">
+                        <label for="data">Inserisci la data di nascita</label>
+                        <input required name="date" type="date" class="form-control" id="data"
+                            aria-describedby="emailHelp" placeholder="Data">
+                        <label for="address">Inserisci il tuo indirizzo</label>
+                        <input required name="indirizzo" type="text" class="form-control" id="address"
+                            aria-describedby="emailHelp" placeholder="Indirizzo">
+                    </div>
+                    <div class="my-2">
+                        <label class="" for="check">Spunta se utente attivo</label>
+                        <input name="check"  type="hidden" class="form-check-input" value="NO" id="check">
+                        <input name="check"   type="checkbox" value="SI" class="form-check-input" id="check">
+                    </div>
+                    <label for="tipo">Tipo</label>
+                    <select name="option" id="tipo">
+                        <option>
+                            nessuno
+                        </option>
+                        <option>
+                            individuale
+                        </option>
+                        <option>
+                            collettivo
+                        </option>
+                    </select>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                        <button type="submit" class="btn btn-primary" nome="submit">Salva</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+        <table id="datatableid" class="customLine" style="width:100%">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Indirizzo</th>
+                    <th>Data</th>
+                    <th>Email</th>
+                    <th>Attivo</th>
+                </tr>
+            </thead>
+            <tbody class="customBg">
+                    <tr>
+                        <th  class="currRecord"><button class="far fa-play-circle btn customIcon editBtn" 
+                            data-bs-toggle="modal" data-bs-target="#modal"></button>1</th>
+                        <th>Gianluca Naddeo</th>
+                        <th>collettivo</th>
+                        <th>Via Faustino bocchi</th>
+                        <th>22/04/1993</th>
+                        <th>geiden93@gmail.com</th>
+                        <th>SI</th>                        
+                    </tr>
+                    <tr>
+                        <th  class="currRecord"><button class="far fa-play-circle btn customIcon editBtn" 
+                            data-bs-toggle="modal" data-bs-target="#modal"></button>2</th>
+                        <th>Gianluca Naddeo</th>
+                        <th>collettivo</th>
+                        <th>Via Faustino bocchi</th>
+                        <th>22/04/1993</th>
+                        <th>geiden93@gmail.com</th>
+                        <th>SI</th>                        
+                    </tr>
+                    <tr>
+                        <th  class="currRecord"><button class="far fa-play-circle btn customIcon editBtn" 
+                            data-bs-toggle="modal" data-bs-target="#modal"></button>3</th>
+                        <th>Gianluca Naddeo</th>
+                        <th>collettivo</th>
+                        <th>Via Faustino bocchi</th>
+                        <th>22/04/1993</th>
+                        <th>geiden93@gmail.com</th>
+                        <th>SI</th>                        
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#datatableid').DataTable({
+
+                "paging": false,
+                "info": false,
+                "searching": false
+            });
+        });
+    </script>    
+</body>
+</html>
